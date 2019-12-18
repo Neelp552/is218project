@@ -30,6 +30,11 @@ else {
                 display_login();
             }
             break;
+        case "display_questions":
+            get_questions($_SESSION["email"]);
+            display_questions();
+            break;
+
         case "display_edit_question":
             display_edit_question($_POST);
             break;
@@ -47,6 +52,18 @@ else {
         case "delete_question":
             delete_question($_POST, $_SESSION);
             display_questions();
+            break;
+        case "view_question":
+            display_one_question($_POST);
+            break;
+        case "display_all_questions":{
+            get_all_questions();
+            display_all_questions();
+            break;
+        }
+        case "logout":
+            logout();
+            display_login();
             break;
     }
 

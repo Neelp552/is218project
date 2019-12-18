@@ -27,6 +27,15 @@ function db_get_question($id){
     $res = $stmt->fetch(\PDO::FETCH_ASSOC);
     return $res;
 }
+function db_get_all_questions(){
+    global $db;
+    $query = 'SELECT * FROM `questions`';
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $res = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    return $res;
+
+}
 
 function db_edit_question($id, $name, $body, $skills){
     global $db;

@@ -39,8 +39,8 @@ function all_valid($pairs){
 /* all of these funcs take post and session - they populate session data */
 function display_login(){
     header("Location: view/login.php");
-
 }
+
 function display_registration(){
     header("Location: view/registration.php");
 }
@@ -155,9 +155,21 @@ function get_questions($user){
     global $_SESSION;
     $_SESSION["questions"] = db_get_questions($user);
 }
+function get_all_questions(){
+    global $_SESSION;
+    $_SESSION["all_questions"] = db_get_all_questions();
+}
 
 function display_questions(){
     header("Location: view/landing.php");
+}
+function display_one_question($post){
+    global $_SESSION;
+    $_SESSION["selected_question"] = db_get_question($post["id"]);
+    header("Location: view/view_question.php");
+}
+function display_all_questions(){
+    header("Location: view/all_questions.php");
 }
 
 function display_add_question(){
@@ -168,4 +180,9 @@ function display_edit_question($post){
     global $_SESSION;
     $_SESSION["selected_question"] = db_get_question($post["id"]);
     header("Location: view/edit_question.php");
+}
+function logout(){
+    global $_SESSION;
+    session_destroy();
+
 }
